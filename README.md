@@ -56,5 +56,5 @@ import numpy as np
 ## Tests
 
 ![image](https://user-images.githubusercontent.com/56780496/115606646-9aa91880-a301-11eb-945b-314ef7b43ecb.png)
-
+![image](https://user-images.githubusercontent.com/56780496/115607334-7b5ebb00-a302-11eb-9dd4-62077aa85b5c.png)
 
