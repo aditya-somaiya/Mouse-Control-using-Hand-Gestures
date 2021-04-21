@@ -22,7 +22,7 @@ def removeBG(frame):
     res = cv2.bitwise_and(frame, frame, mask=fgmask)
     return res
 
-def calculateFingers(res,drawing):  # -> finished bool, cnt: finger count
+'''def calculateFingers(res,drawing):  # -> finished bool, cnt: finger count
     #  convexity defect
     hull = cv2.convexHull(res, returnPoints=False)
     if len(hull) > 3:
@@ -43,7 +43,7 @@ def calculateFingers(res,drawing):  # -> finished bool, cnt: finger count
                     cnt += 1
                     cv2.circle(drawing, far, 8, [211, 84, 0], -1)
             return True, cnt
-    return False, 0
+    return False, 0'''
 
 # Create the directory structure
 if not os.path.exists("data"):
@@ -57,16 +57,17 @@ if not os.path.exists("data"):
     os.makedirs("data/train/left-click")
     os.makedirs("data/train/scroll-up")
     os.makedirs("data/train/scroll-down")
+    os.makedirs("data/train/screenshot")
 
     os.makedirs("data/test/index")
     os.makedirs("data/test/right-click")
     os.makedirs("data/test/left-click")
     os.makedirs("data/test/scroll-up")
     os.makedirs("data/test/scroll-down")
+    os.makedirs("data/test/screenshot")
    
-
 # Train or test 
-mode = 'train'
+mode = 'test'
 directory = 'data/'+mode+'/'
 
 cap = cv2.VideoCapture(0)
@@ -83,7 +84,8 @@ while cap.isOpened():
              'left-click': len(os.listdir(directory+"/left-click")),
              'scroll-up': len(os.listdir(directory+"/scroll-up")),
              'scroll-down': len(os.listdir(directory+"/scroll-down")),
-             'double': len(os.listdir(directory+"/double")),}
+             'double': len(os.listdir(directory+"/double")),
+             'screenshot': len(os.listdir(directory+"/screenshot"))}
 
     # Printing the count in each set to the screen
     cv2.putText(frame, "Mode: "+mode, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1)
@@ -93,6 +95,7 @@ while cap.isOpened():
     cv2.putText(frame, "Scroll Up: "+str(count['scroll-up']), (10, 220), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1)
     cv2.putText(frame, "Scroll Down: "+str(count['scroll-down']), (10, 260), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1)
     cv2.putText(frame, "Double: "+str(count['double']), (10, 300), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1)
+    cv2.putText(frame, "Screenshot: "+str(count['screenshot']), (10, 340), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1)
     
     # Coordinates of the ROI
     x1 = int(0.5*frame.shape[1])
@@ -174,6 +177,9 @@ while cap.isOpened():
     elif interrupt & 0xFF == ord('l'):
         roi = cv2.resize(thresh, (64, 64))
         cv2.imwrite(directory+'left-click/'+str(count['left-click'])+'.jpg', roi)
+    elif interrupt & 0xFF == ord('s'):
+        roi = cv2.resize(thresh, (64, 64))
+        cv2.imwrite(directory+'screenshot/'+str(count['screenshot'])+'.jpg', roi)
         
     elif interrupt == ord('b'):  # press 'b' to capture the background
         bgModel = cv2.createBackgroundSubtractorMOG2(0, bgSubThreshold)

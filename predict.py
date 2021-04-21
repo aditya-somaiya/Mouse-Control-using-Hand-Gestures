@@ -96,14 +96,15 @@ while cap.isOpened():
                       'index': result[0][1], 
                   'left-click': result[0][2], 
                   'right-click': result[0][3],
-                  'scroll-down': result[0][4],
-                  'scroll-up': result[0][5]}
+                  'screenshot': result[0][4],
+                  'scroll-down': result[0][5],
+                  'scroll-up': result[0][6]}
     
         # Sorting based on top prediction
         prediction = sorted(prediction.items(), key=operator.itemgetter(1), reverse=True)
         fList.append(str(prediction[0][0]))
         
-        if prediction[0][0] == "inde":
+        if prediction[0][0] == "index":
             mp.moveCursor(roi, top)
     
         if len(fList) >= 1:
@@ -123,12 +124,15 @@ while cap.isOpened():
                     pai.doubleClick()
                 elif repeated == "left-clic":
                     pai.click(button='left')
-                elif repeated == "scroll-u":
+                elif repeated == "scroll-up":
                     pai.scroll(100)
-                elif repeated == "scroll-dow":
+                elif repeated == "scroll-down":
                     pai.scroll(-100)
                 elif repeated == "right-clic":
                     pai.click(button='right')
+                elif repeated == "screensho":
+                    p = pai.screenshot()
+                    p.save(r'C:\\Users\\adiso\\Pictures\\\\p.png')
                 else:
                     pass       
     

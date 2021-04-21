@@ -1,5 +1,4 @@
 import pyautogui as pai
-import numpy as np
 
 # Find screen width and height
 sw, sh = pai.size()
