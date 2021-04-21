@@ -1,4 +1,5 @@
 # Mouse-Control-using-Hand-Gestures
+** images below **
 ## Synopsis
 
 The goal is to innovate a new Human-Computer Interaction System which facilitates the use of natural and more intuitive hand gestures rather than an external mechanical device such as a mouse.
