@@ -5,8 +5,11 @@ The goal is to innovate a new Human-Computer Interaction System which facilitate
 
 Hand Gestures provide a better way of interaction because they are intuitive i.e. a user can interact with the system more freely with much more flexibility.
 
-
 ## Functions used
+###Unique Selling Points: 
+1. Pre trained model available, easy to build a custom dataset
+2. Use of masking in image processing to eliminate background (within region of interest)
+3. Training model code comes with great visualization tools (accuracy & loss curves, confusion matrix, classification report)
 
 ###Phase 1: Taking Input 
 
@@ -52,12 +55,6 @@ import numpy as np
 
 ## Tests
 
+![image](https://user-images.githubusercontent.com/56780496/115606646-9aa91880-a301-11eb-945b-314ef7b43ecb.png)
 
 
-## Contributors
-
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
-
-## License
-
-A short snippet describing the license (MIT, Apache, etc.)
